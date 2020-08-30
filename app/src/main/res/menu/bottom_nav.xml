@@ -3,21 +3,21 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
-        android:id="@+id/home"
+        android:id="@+id/navigation_home"
         android:icon="@drawable/ic_round_home_24_black"
         android:title="@string/home"
         app:cnb_backgroundColor="@color/colorAccentActive"
         app:cnb_iconColor="@color/colorPrimaryDark" />
 
     <item
-        android:id="@+id/favorites"
+        android:id="@+id/navigation_favorites"
         android:icon="@drawable/ic_round_favorite_24_black"
         android:title="@string/favorites"
         app:cnb_backgroundColor="@color/colorAccentActive"
         app:cnb_iconColor="@color/colorPrimaryDark" />
 
     <item
-        android:id="@+id/settings"
+        android:id="@+id/navigation_settings"
         android:icon="@drawable/ic_round_menu_24_black"
         android:title="@string/settings"
         app:cnb_backgroundColor="@color/colorAccentActive"
