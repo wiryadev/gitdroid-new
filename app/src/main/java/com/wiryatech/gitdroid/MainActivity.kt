@@ -3,18 +3,12 @@ package com.wiryatech.gitdroid
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.replace
-import androidx.navigation.findNavController
-import androidx.navigation.ui.AppBarConfiguration
-import androidx.navigation.ui.setupActionBarWithNavController
-import androidx.navigation.ui.setupWithNavController
-import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.ismaeldivita.chipnavigation.ChipNavigationBar
 
 
 class MainActivity : AppCompatActivity() {
 
-    lateinit var chipNavigationBar: ChipNavigationBar
+    private lateinit var chipNavigationBar: ChipNavigationBar
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

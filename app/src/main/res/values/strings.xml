@@ -12,4 +12,9 @@
     <string name="avatar">Avatar</string>
     <string name="total_fav">20</string>
     <string name="users">Users</string>
+    <string name="back_button">Back Button</string>
+    <string name="header">header</string>
+    <string name="followers">Followers</string>
+    <string name="following">Following</string>
+    <string name="public_repos">Public Repos</string>
 </resources>
