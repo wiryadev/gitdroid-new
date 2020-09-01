@@ -1,7 +1,8 @@
-package com.wiryatech.gitdroid
+package com.wiryatech.gitdroid.ui.activities
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.wiryatech.gitdroid.R
 
 class DetailActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

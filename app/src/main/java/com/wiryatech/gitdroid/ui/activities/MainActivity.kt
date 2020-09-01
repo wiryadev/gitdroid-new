@@ -1,9 +1,13 @@
-package com.wiryatech.gitdroid
+package com.wiryatech.gitdroid.ui.activities
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.ismaeldivita.chipnavigation.ChipNavigationBar
+import com.wiryatech.gitdroid.ui.fragments.FavoritesFragment
+import com.wiryatech.gitdroid.ui.fragments.HomeFragment
+import com.wiryatech.gitdroid.R
+import com.wiryatech.gitdroid.ui.fragments.SettingsFragment
 
 
 class MainActivity : AppCompatActivity() {

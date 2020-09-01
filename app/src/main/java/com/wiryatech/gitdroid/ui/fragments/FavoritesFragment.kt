@@ -1,17 +1,20 @@
-package com.wiryatech.gitdroid
+package com.wiryatech.gitdroid.ui.fragments
 
 import android.os.Bundle
+import android.os.Handler
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.wiryatech.gitdroid.R
+import kotlinx.android.synthetic.main.fragment_favorites.*
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
 private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
 
-class SettingsFragment : Fragment() {
+class FavoritesFragment : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
@@ -28,7 +31,15 @@ class SettingsFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_settings, container, false)
+        Handler().postDelayed({
+//            initListener()
+//            getData()
+
+            rv_fav_loading.stopShimmer()
+            rv_fav_loading.visibility = View.GONE
+            rv_fav.visibility = View.VISIBLE
+        }, 2000)
+
+        return inflater.inflate(R.layout.fragment_favorites, container, false)
     }
 }

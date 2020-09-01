@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/shape_fragment_background"
-    tools:context=".FavoritesFragment">
+    tools:context=".ui.fragments.FavoritesFragment">
 
     <TextView
         android:id="@+id/tv_header"
