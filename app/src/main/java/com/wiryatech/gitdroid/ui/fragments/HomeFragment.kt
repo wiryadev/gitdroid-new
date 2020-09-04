@@ -19,7 +19,7 @@ import kotlinx.android.synthetic.main.fragment_home.*
 class HomeFragment : Fragment() {
 
     private lateinit var searchViewModel: SearchViewModel
-    private val usersAdapter by lazy { UsersAdapter(ArrayList()) }
+    private val usersAdapter by lazy { UsersAdapter(mutableListOf()) }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -31,6 +31,8 @@ class HomeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        showDefaultNoData()
 
         initUI()
         setupRV()
@@ -103,16 +105,13 @@ class HomeFragment : Fragment() {
 
     private fun showRV(users: List<User>) {
         if (!users.isNullOrEmpty()) {
-            imageView.visibility = View.GONE
-            tv_error.visibility = View.GONE
             rv_user.adapter?.let {
                 if (it is UsersAdapter) {
                     it.setData(users)
                 }
             }
         } else {
-            imageView.visibility = View.VISIBLE
-            tv_error.visibility = View.VISIBLE
+            showDefaultNoData()
         }
     }
 
@@ -122,14 +121,24 @@ class HomeFragment : Fragment() {
 
     private fun setLoadingState(state: Boolean) {
         if (state) {
+            imageView.visibility = View.INVISIBLE
+            tv_error.visibility = View.INVISIBLE
+            rv_user.visibility = View.INVISIBLE
             rv_user_loading.visibility = View.VISIBLE
         } else {
             Handler().postDelayed({
                 rv_user_loading.stopShimmer()
-                rv_user_loading.visibility = View.GONE
+                rv_user_loading.visibility = View.INVISIBLE
                 rv_user.visibility = View.VISIBLE
-            }, 2500)
+            }, 1250)
         }
+    }
+
+    private fun showDefaultNoData() {
+        imageView.visibility = View.VISIBLE
+        tv_error.visibility = View.VISIBLE
+        rv_user.visibility = View.INVISIBLE
+        rv_user_loading.visibility = View.INVISIBLE
     }
 
 }

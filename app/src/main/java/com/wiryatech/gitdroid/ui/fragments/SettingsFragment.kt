@@ -7,22 +7,14 @@ import android.view.View
 import android.view.ViewGroup
 import com.wiryatech.gitdroid.R
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
 class SettingsFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
+        requireActivity().supportFragmentManager
+            .beginTransaction()
+            .replace(R.id.settings, PreferenceFragment())
+            .commit()
     }
 
     override fun onCreateView(
@@ -32,4 +24,5 @@ class SettingsFragment : Fragment() {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_settings, container, false)
     }
+
 }

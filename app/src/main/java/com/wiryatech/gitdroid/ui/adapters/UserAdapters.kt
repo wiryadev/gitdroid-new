@@ -10,7 +10,7 @@ import com.wiryatech.gitdroid.R
 import com.wiryatech.gitdroid.data.model.User
 import kotlinx.android.synthetic.main.item_user.view.*
 
-class UsersAdapter(private val listUser: ArrayList<User>) : RecyclerView.Adapter<UsersAdapter.ListViewHolder>() {
+class UsersAdapter(private val listUser: MutableList<User>) : RecyclerView.Adapter<UsersAdapter.ListViewHolder>() {
 
 //    private val mData = ArrayList<User>()
 

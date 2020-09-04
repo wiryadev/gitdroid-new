@@ -1,0 +1,30 @@
+<androidx.preference.PreferenceScreen xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <PreferenceCategory app:title="@string/preferences">
+
+        <Preference
+            app:title="@string/language"
+            app:summary="@string/language_summary"
+            app:icon="@drawable/ic_baseline_language_24">
+            <intent android:action="android.settings.LOCALE_SETTINGS" />
+        </Preference>
+
+        <SwitchPreferenceCompat
+            app:title="@string/reminder"
+            app:summaryOn="@string/reminder_summary_on"
+            app:summaryOff="@string/reminder_summary_off"
+            app:icon="@drawable/ic_baseline_notifications_24"
+            app:key="@string/reminder"/>
+
+    </PreferenceCategory>
+
+    <PreferenceCategory android:title="@string/info">
+
+        <Preference
+            app:title="@string/about"
+            app:icon="@drawable/ic_baseline_info_24" />
+
+    </PreferenceCategory>
+
+</androidx.preference.PreferenceScreen>
