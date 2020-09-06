@@ -18,15 +18,4 @@ class FavoritesFragment : Fragment() {
         return inflater.inflate(R.layout.fragment_favorites, container, false)
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        Handler().postDelayed({
-//            initListener()
-//            getData()
-
-            rv_fav_loading.stopShimmer()
-            rv_fav_loading.visibility = View.INVISIBLE
-            rv_fav.visibility = View.VISIBLE
-        }, 1500)
-    }
 }

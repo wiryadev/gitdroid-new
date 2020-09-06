@@ -1,14 +1,15 @@
 package com.wiryatech.gitdroid.data.model
 
-import com.google.gson.annotations.SerializedName
+import androidx.room.Entity
+import androidx.room.PrimaryKey
 
+@Entity(tableName = "users")
 data class User(
-
-    var login: String,
-    var type: String,
-    var avatar_url: String,
-    var public_repos: Int = 0,
-    var followers: Int = 0,
-    var following: Int = 0
-
+    @PrimaryKey(autoGenerate = false)
+    val login: String,
+    val type: String,
+    val avatar_url: String,
+    var public_repos: Int? = null,
+    var followers: Int? = null,
+    var following: Int? = null
 )

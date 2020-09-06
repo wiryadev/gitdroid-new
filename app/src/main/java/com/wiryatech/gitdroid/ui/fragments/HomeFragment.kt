@@ -1,25 +1,29 @@
 package com.wiryatech.gitdroid.ui.fragments
 
 import android.os.Bundle
-import android.os.Handler
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.wiryatech.gitdroid.R
-import com.wiryatech.gitdroid.data.model.User
-import com.wiryatech.gitdroid.ui.adapters.UsersAdapter
-import com.wiryatech.gitdroid.ui.viewmodels.SearchViewModel
+import com.wiryatech.gitdroid.ui.activities.MainActivity
+import com.wiryatech.gitdroid.ui.adapters.UserAdapter
+import com.wiryatech.gitdroid.ui.viewmodels.UserViewModel
+import com.wiryatech.gitdroid.utils.Status
 import kotlinx.android.synthetic.main.fragment_home.*
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.MainScope
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 
 class HomeFragment : Fragment() {
 
-    private lateinit var searchViewModel: SearchViewModel
-    private val usersAdapter by lazy { UsersAdapter(mutableListOf()) }
+    private lateinit var viewModel: UserViewModel
+    private val userAdapter by lazy { UserAdapter() }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -32,37 +36,13 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        showDefaultNoData()
-
-        initUI()
+        viewModel = (activity as MainActivity).userViewModel
         setupRV()
+        initUI()
     }
 
-//    private fun initUI() {
-//        search.apply{
-//            setOnQueryTextListener(object : SearchView.OnQueryTextListener {
-//                override fun onQueryTextSubmit(query: String?): Boolean {
-//                    if (query.toString().isEmpty()) return false
-//                    searchViewModel.searchUsers(query!!)
-//                    searchViewModel.listUsers.observe(viewLifecycleOwner, { response ->
-//                        if (response.isSuccessful) {
-//                            response.body()?.let { usersAdapter.setData(it) }
-//                            showRV()
-//                        } else {
-//                            Toast.makeText(activity, response.code(), Toast.LENGTH_SHORT).show()
-//                        }
-//                    })
-//                    return true
-//                }
-//
-//                override fun onQueryTextChange(newText: String?): Boolean {
-//                    return false
-//                }
-//            })
-//        }
-//    }
-
     private fun initUI() {
+        var job: Job? = null
         search.apply{
             setOnQueryTextListener(object : SearchView.OnQueryTextListener {
                 override fun onQueryTextSubmit(query: String?): Boolean {
@@ -71,74 +51,78 @@ class HomeFragment : Fragment() {
                 }
 
                 override fun onQueryTextChange(newText: String?): Boolean {
-                    return false
+                    job?.cancel()
+                    job = MainScope().launch {
+                        delay(500)
+                        newText?.let {
+                            if (it.trim().isNotEmpty()) {
+                                searchUser(it)
+                            }
+                        }
+                    }
+                    return true
                 }
             })
         }
+        handleState()
     }
 
-    private fun searchUser(q: String) {
-        if (q.trim().isNotEmpty()) {
-            searchViewModel.searchUsers(q)
-        }
-    }
-
-    private fun setupRV() {
-        usersAdapter.notifyDataSetChanged()
-
-        rv_user.apply {
-            setHasFixedSize(true)
-            layoutManager = LinearLayoutManager(this.context)
-            adapter = usersAdapter
-        }
-
-        searchViewModel = ViewModelProvider(requireActivity(), ViewModelProvider.NewInstanceFactory()).get(SearchViewModel::class.java)
-        searchViewModel.status.observe(viewLifecycleOwner, { setLoadingState(it) })
-        searchViewModel.listSearch.observe(viewLifecycleOwner, {showRV(it)})
-
-        usersAdapter.setOnItemClickCallback(object : UsersAdapter.OnItemClickCallback {
-            override fun onItemClicked(data: User) {
-                showSelectedUser(data)
+    private fun handleState() {
+        viewModel.listSearch.observe(viewLifecycleOwner, { response ->
+            when(response) {
+                is Status.Success -> {
+                    hideProgressBar()
+                    response.data?.let {
+                        if (it.total_count <= 0 || it.incomplete_results) {
+                            showDefaultNoData()
+                        } else {
+                            userAdapter.differ.submitList(it.items)
+                        }
+                    }
+                }
+                is Status.Error -> {
+                    hideProgressBar()
+                    imageView.visibility = View.INVISIBLE
+                    tv_error.visibility = View.INVISIBLE
+                    response.message?.let {
+                        Log.e("Error", "${response.message}")
+                    }
+                }
+                is Status.Loading -> {
+                    showProgressBar()
+                }
             }
         })
     }
 
-    private fun showRV(users: List<User>) {
-        if (!users.isNullOrEmpty()) {
-            rv_user.adapter?.let {
-                if (it is UsersAdapter) {
-                    it.setData(users)
-                }
-            }
-        } else {
-            showDefaultNoData()
+    private fun searchUser(q: String) {
+        if (q.trim().isNotEmpty()) {
+            viewModel.searchUser(q)
         }
     }
 
-    private fun showSelectedUser(user: User) {
-        Toast.makeText(activity, user.login, Toast.LENGTH_SHORT).show()
+    private fun setupRV() {
+        rv_user.apply {
+            adapter = userAdapter
+            layoutManager = LinearLayoutManager(activity)
+        }
     }
 
-    private fun setLoadingState(state: Boolean) {
-        if (state) {
-            imageView.visibility = View.INVISIBLE
-            tv_error.visibility = View.INVISIBLE
-            rv_user.visibility = View.INVISIBLE
-            rv_user_loading.visibility = View.VISIBLE
-        } else {
-            Handler().postDelayed({
-                rv_user_loading.stopShimmer()
-                rv_user_loading.visibility = View.INVISIBLE
-                rv_user.visibility = View.VISIBLE
-            }, 1250)
-        }
+    private fun hideProgressBar() {
+        progressBar.visibility = View.INVISIBLE
+    }
+
+    private fun showProgressBar() {
+        progressBar.visibility = View.VISIBLE
+        imageView.visibility = View.INVISIBLE
+        tv_error.visibility = View.INVISIBLE
     }
 
     private fun showDefaultNoData() {
         imageView.visibility = View.VISIBLE
         tv_error.visibility = View.VISIBLE
         rv_user.visibility = View.INVISIBLE
-        rv_user_loading.visibility = View.INVISIBLE
+        hideProgressBar()
     }
 
 }
