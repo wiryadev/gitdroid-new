@@ -35,7 +35,7 @@ class UserAdapter : RecyclerView.Adapter<UserAdapter.ListViewHolder>() {
         holder.itemView.apply {
             Glide.with(this)
                 .load(user.avatar_url)
-                .apply(RequestOptions().override(64).placeholder(R.drawable.ic_baseline_account_circle_64))
+                .apply(RequestOptions().override(64).placeholder(R.drawable.ic_round_account_circle_64))
                 .into(iv_avatar)
 
             tv_username.text = user.login

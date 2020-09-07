@@ -13,9 +13,9 @@ interface GithubApi {
     suspend fun searchUser(@Query("q") q: String): Response<Search>
 
     @GET("users/{username}/followers")
-    suspend fun getFollower(@Path("username") username: String?): Response<List<User>>
+    suspend fun getFollower(@Path("username") username: String): Response<List<User>>
 
     @GET("users/{username}/following")
-    suspend fun getFollowing(@Path("username") username: String?): Response<List<User>>
+    suspend fun getFollowing(@Path("username") username: String): Response<List<User>>
 
 }

@@ -14,6 +14,8 @@ import retrofit2.Response
 class UserViewModel(private val userRepository: UserRepository) : ViewModel() {
 
     val listSearch: MutableLiveData<Status<Search>> = MutableLiveData()
+    val listFollower: MutableLiveData<Status<List<User>>> = MutableLiveData()
+    val listFollowing: MutableLiveData<Status<List<User>>> = MutableLiveData()
 
     fun searchUser(q: String) = viewModelScope.launch {
         listSearch.postValue(Status.Loading())
@@ -21,7 +23,28 @@ class UserViewModel(private val userRepository: UserRepository) : ViewModel() {
         listSearch.postValue(handleSearchResponse(response))
     }
 
+    fun getFollower(username: String) = viewModelScope.launch {
+        listFollower.postValue(Status.Loading())
+        val response = userRepository.getFollower(username)
+        listFollower.postValue(handleFollowResponse(response))
+    }
+
+    fun getFollowing(username: String) = viewModelScope.launch {
+        listFollowing.postValue(Status.Loading())
+        val response = userRepository.getFollowing(username)
+        listFollowing.postValue(handleFollowResponse(response))
+    }
+
     private fun handleSearchResponse(response: Response<Search>) : Status<Search> {
+        if (response.isSuccessful) {
+            response.body()?.let { result ->
+                return Status.Success(result)
+            }
+        }
+        return Status.Error(response.message())
+    }
+
+    private fun handleFollowResponse(response: Response<List<User>>) : Status<List<User>> {
         if (response.isSuccessful) {
             response.body()?.let { result ->
                 return Status.Success(result)

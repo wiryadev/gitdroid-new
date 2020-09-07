@@ -1,5 +1,6 @@
 package com.wiryatech.gitdroid.ui.fragments
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -8,8 +9,10 @@ import android.view.ViewGroup
 import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.wiryatech.gitdroid.R
+import com.wiryatech.gitdroid.ui.activities.DetailActivity
 import com.wiryatech.gitdroid.ui.activities.MainActivity
 import com.wiryatech.gitdroid.ui.adapters.UserAdapter
 import com.wiryatech.gitdroid.ui.viewmodels.UserViewModel
@@ -53,7 +56,7 @@ class HomeFragment : Fragment() {
                 override fun onQueryTextChange(newText: String?): Boolean {
                     job?.cancel()
                     job = MainScope().launch {
-                        delay(500)
+                        delay(750)
                         newText?.let {
                             if (it.trim().isNotEmpty()) {
                                 searchUser(it)
@@ -65,6 +68,11 @@ class HomeFragment : Fragment() {
             })
         }
         handleState()
+
+        userAdapter.setOnItemClickListener {
+            val data = it.login
+            getUserDetail(data)
+        }
     }
 
     private fun handleState() {
@@ -123,6 +131,12 @@ class HomeFragment : Fragment() {
         tv_error.visibility = View.VISIBLE
         rv_user.visibility = View.INVISIBLE
         hideProgressBar()
+    }
+
+    private fun getUserDetail(data: String) {
+        val intent = Intent(activity, DetailActivity::class.java)
+        intent.putExtra(DetailActivity.USERNAME, data)
+        startActivity(intent)
     }
 
 }

@@ -6,7 +6,7 @@
         <Preference
             app:title="@string/language"
             app:summary="@string/language_summary"
-            app:icon="@drawable/ic_baseline_language_24">
+            app:icon="@drawable/ic_round_language_24">
             <intent android:action="android.settings.LOCALE_SETTINGS" />
         </Preference>
 
@@ -14,7 +14,7 @@
             app:title="@string/reminder"
             app:summaryOn="@string/reminder_summary_on"
             app:summaryOff="@string/reminder_summary_off"
-            app:icon="@drawable/ic_baseline_notifications_24"
+            app:icon="@drawable/ic_round_notifications_24"
             app:key="@string/reminder"/>
 
     </PreferenceCategory>
@@ -23,7 +23,7 @@
 
         <Preference
             app:title="@string/about"
-            app:icon="@drawable/ic_baseline_info_24" />
+            app:icon="@drawable/ic_round_info_24" />
 
     </PreferenceCategory>
 
