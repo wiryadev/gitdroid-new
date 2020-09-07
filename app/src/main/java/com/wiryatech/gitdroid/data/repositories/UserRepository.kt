@@ -12,6 +12,10 @@ class UserRepository(val db: UserDb) {
         return RetrofitBuilder.api.searchUser(q)
     }
 
+    suspend fun getDetailUser(username: String): Response<User> {
+        return RetrofitBuilder.api.getDetailUser(username)
+    }
+
     suspend fun getFollower(username: String): Response<List<User>> {
         return RetrofitBuilder.api.getFollower(username)
     }

@@ -18,6 +18,7 @@ import com.wiryatech.gitdroid.ui.adapters.UserAdapter
 import com.wiryatech.gitdroid.ui.viewmodels.UserViewModel
 import com.wiryatech.gitdroid.utils.Status
 import kotlinx.android.synthetic.main.fragment_home.*
+import kotlinx.android.synthetic.main.item_user.*
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.MainScope
 import kotlinx.coroutines.delay
@@ -40,8 +41,9 @@ class HomeFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         viewModel = (activity as MainActivity).userViewModel
-        setupRV()
+
         initUI()
+        setupRV()
     }
 
     private fun initUI() {
@@ -79,7 +81,7 @@ class HomeFragment : Fragment() {
         viewModel.listSearch.observe(viewLifecycleOwner, { response ->
             when(response) {
                 is Status.Success -> {
-                    hideProgressBar()
+                    showRV()
                     response.data?.let {
                         if (it.total_count <= 0 || it.incomplete_results) {
                             showDefaultNoData()
@@ -90,9 +92,9 @@ class HomeFragment : Fragment() {
                 }
                 is Status.Error -> {
                     hideProgressBar()
-                    imageView.visibility = View.INVISIBLE
-                    tv_error.visibility = View.INVISIBLE
+                    showDefaultNoData()
                     response.message?.let {
+                        tv_error.text = response.message.toString()
                         Log.e("Error", "${response.message}")
                     }
                 }
@@ -114,6 +116,13 @@ class HomeFragment : Fragment() {
             adapter = userAdapter
             layoutManager = LinearLayoutManager(activity)
         }
+    }
+
+    private fun showRV() {
+        rv_user.visibility = View.VISIBLE
+        imageView.visibility = View.INVISIBLE
+        tv_error.visibility = View.INVISIBLE
+        hideProgressBar()
     }
 
     private fun hideProgressBar() {
