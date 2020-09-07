@@ -14,7 +14,7 @@ import com.wiryatech.gitdroid.data.repositories.UserRepository
 import com.wiryatech.gitdroid.ui.adapters.SectionsPagerAdapter
 import com.wiryatech.gitdroid.ui.viewmodels.UserViewModel
 import com.wiryatech.gitdroid.ui.viewmodels.UserViewModelFactory
-import com.wiryatech.gitdroid.utils.Status
+import com.wiryatech.gitdroid.utils.Resource
 import kotlinx.android.synthetic.main.activity_detail.*
 
 class DetailActivity : AppCompatActivity() {
@@ -68,7 +68,7 @@ class DetailActivity : AppCompatActivity() {
         Log.d(TAG, "handleState")
         userViewModel.detailUser.observe(this, { response ->
             when(response) {
-                is Status.Success -> {
+                is Resource.Success -> {
                     hideProgressBar()
                     response.data?.let {
                         if (it.equals(null)) {
@@ -78,13 +78,13 @@ class DetailActivity : AppCompatActivity() {
                         }
                     }
                 }
-                is Status.Error -> {
+                is Resource.Error -> {
                     hideProgressBar()
                     response.message?.let {
                         Log.e("Error", "${response.message}")
                     }
                 }
-                is Status.Loading -> {
+                is Resource.Loading -> {
                     showProgressBar()
                 }
             }

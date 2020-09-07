@@ -11,7 +11,7 @@ import com.wiryatech.gitdroid.R
 import com.wiryatech.gitdroid.ui.activities.DetailActivity
 import com.wiryatech.gitdroid.ui.adapters.UserAdapter
 import com.wiryatech.gitdroid.ui.viewmodels.UserViewModel
-import com.wiryatech.gitdroid.utils.Status
+import com.wiryatech.gitdroid.utils.Resource
 import kotlinx.android.synthetic.main.fragment_follower.*
 
 class FollowingFragment : Fragment() {
@@ -62,7 +62,7 @@ class FollowingFragment : Fragment() {
     private fun handleState() {
         viewModel.listFollowing.observe(viewLifecycleOwner, { response ->
             when(response) {
-                is Status.Success -> {
+                is Resource.Success -> {
                     hideProgressBar()
                     response.data?.let {
                         if (it.isNullOrEmpty()) {
@@ -72,7 +72,7 @@ class FollowingFragment : Fragment() {
                         }
                     }
                 }
-                is Status.Error -> {
+                is Resource.Error -> {
                     hideProgressBar()
                     imageView.visibility = View.VISIBLE
                     tv_error.visibility = View.VISIBLE
@@ -81,7 +81,7 @@ class FollowingFragment : Fragment() {
                         Log.e("Error", "${response.message}")
                     }
                 }
-                is Status.Loading -> {
+                is Resource.Loading -> {
                     showProgressBar()
                 }
             }

@@ -14,9 +14,9 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:background="?attr/colorPrimary"
+        app:layout_constraintTop_toBottomOf="@+id/iv_avatar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cardView"
         app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
 
     <com.google.android.material.tabs.TabLayout
@@ -38,29 +38,19 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tab_detail" >
+        app:layout_constraintTop_toBottomOf="@+id/tab_detail" />
 
-    </androidx.viewpager.widget.ViewPager>
-
-    <androidx.cardview.widget.CardView
-        android:id="@+id/cardView"
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/iv_avatar"
         android:layout_width="108dp"
         android:layout_height="108dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="24dp"
-        app:cardCornerRadius="8dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_back">
-
-        <ImageView
-            android:id="@+id/iv_avatar"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:contentDescription="@string/avatar"
-            android:scaleType="centerCrop"
-            android:src="@color/colorAccent" />
-
-    </androidx.cardview.widget.CardView>
+        android:contentDescription="@string/avatar"
+        android:scaleType="centerCrop"
+        android:src="@color/colorAccent"
+        app:layout_constraintTop_toBottomOf="@id/btn_back"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <ImageButton
         android:id="@+id/btn_back"
@@ -90,7 +80,7 @@
         android:id="@+id/tv_user_type"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="4dp"
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
         android:fontFamily="@font/montserrat_medium"
@@ -98,8 +88,8 @@
         android:textSize="16sp"
         android:drawablePadding="4dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/cardView"
-        app:layout_constraintTop_toTopOf="@+id/cardView"
+        app:layout_constraintStart_toEndOf="@+id/iv_avatar"
+        app:layout_constraintTop_toTopOf="@+id/iv_avatar"
         app:drawableStartCompat="@drawable/ic_round_verified_user_24" />
 
     <TextView
@@ -107,12 +97,12 @@
         android:layout_width="80dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="4dp"
+        android:layout_marginTop="6dp"
         android:text="@string/total_fav"
         android:textSize="28sp"
         android:textStyle="bold"
         android:textAlignment="center"
-        app:layout_constraintStart_toEndOf="@id/cardView"
+        app:layout_constraintStart_toEndOf="@id/iv_avatar"
         app:layout_constraintTop_toBottomOf="@id/tv_user_type" />
 
     <TextView
@@ -130,13 +120,12 @@
         android:layout_width="80dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="6dp"
-        android:layout_marginTop="4dp"
         android:text="@string/total_fav"
         android:textSize="28sp"
         android:textStyle="bold"
         android:textAlignment="center"
-        app:layout_constraintStart_toEndOf="@id/tv_repos"
-        app:layout_constraintTop_toBottomOf="@id/tv_user_type" />
+        app:layout_constraintTop_toTopOf="@id/tv_repos"
+        app:layout_constraintStart_toEndOf="@id/tv_repos" />
 
     <TextView
         android:id="@+id/textView7"
@@ -154,13 +143,12 @@
         android:layout_width="80dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="6dp"
-        android:layout_marginTop="4dp"
         android:text="@string/total_fav"
         android:textSize="28sp"
         android:textStyle="bold"
         android:textAlignment="center"
-        app:layout_constraintStart_toEndOf="@id/tv_followers"
-        app:layout_constraintTop_toBottomOf="@id/tv_user_type" />
+        app:layout_constraintTop_toTopOf="@id/tv_repos"
+        app:layout_constraintStart_toEndOf="@id/tv_followers" />
 
     <TextView
         android:id="@+id/textView8"

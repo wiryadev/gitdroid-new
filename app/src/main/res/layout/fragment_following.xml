@@ -24,9 +24,9 @@
         android:id="@+id/imageView"
         android:layout_width="0dp"
         android:layout_height="320dp"
+        android:layout_marginTop="24dp"
         android:src="@drawable/ic_following"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@id/rv_user"
         app:layout_constraintStart_toStartOf="@id/rv_user"
         android:contentDescription="@string/no_data" />

@@ -8,17 +8,14 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
-import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.wiryatech.gitdroid.R
 import com.wiryatech.gitdroid.ui.activities.DetailActivity
 import com.wiryatech.gitdroid.ui.activities.MainActivity
 import com.wiryatech.gitdroid.ui.adapters.UserAdapter
 import com.wiryatech.gitdroid.ui.viewmodels.UserViewModel
-import com.wiryatech.gitdroid.utils.Status
+import com.wiryatech.gitdroid.utils.Resource
 import kotlinx.android.synthetic.main.fragment_home.*
-import kotlinx.android.synthetic.main.item_user.*
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.MainScope
 import kotlinx.coroutines.delay
@@ -80,7 +77,7 @@ class HomeFragment : Fragment() {
     private fun handleState() {
         viewModel.listSearch.observe(viewLifecycleOwner, { response ->
             when(response) {
-                is Status.Success -> {
+                is Resource.Success -> {
                     showRV()
                     response.data?.let {
                         if (it.total_count <= 0 || it.incomplete_results) {
@@ -90,7 +87,7 @@ class HomeFragment : Fragment() {
                         }
                     }
                 }
-                is Status.Error -> {
+                is Resource.Error -> {
                     hideProgressBar()
                     showDefaultNoData()
                     response.message?.let {
@@ -98,7 +95,7 @@ class HomeFragment : Fragment() {
                         Log.e("Error", "${response.message}")
                     }
                 }
-                is Status.Loading -> {
+                is Resource.Loading -> {
                     showProgressBar()
                 }
             }

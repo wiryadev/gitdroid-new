@@ -58,7 +58,7 @@ dependencies {
     // UI Design
     implementation "com.ismaeldivita.chipnavigation:chip-navigation-bar:$cnb_version"
     implementation "com.airbnb.android:lottie:$lottie_version"
-    implementation "com.facebook.shimmer:shimmer:$shimmer_version"
+    implementation "de.hdodenhof:circleimageview:$civ_version"
 
     // Image Loader
     implementation "com.github.bumptech.glide:glide:$glide_version"
