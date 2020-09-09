@@ -3,7 +3,9 @@ package com.wiryatech.gitdroid.ui.activities
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
@@ -40,6 +42,7 @@ class DetailActivity : AppCompatActivity() {
         initViewModel()
         initData(username)
         handleState()
+        checkFavorite()
         initPager(username)
     }
 
@@ -72,6 +75,18 @@ class DetailActivity : AppCompatActivity() {
         }
     }
 
+    private fun checkFavorite() {
+        detailViewModel.checkFavorite(username).observe(this, {
+            if (it == 1) {
+                isFavorite = true
+                changeIcon(isFavorite)
+            } else {
+                isFavorite = false
+                changeIcon(isFavorite)
+            }
+        })
+    }
+
     private fun handleState() {
         Log.d(TAG, "handleState")
         detailViewModel.detailUser.observe(this, { response ->
@@ -84,6 +99,7 @@ class DetailActivity : AppCompatActivity() {
                         } else {
                             user = it
                             inputData(user)
+                            saveUser(user)
                         }
                     }
                 }
@@ -100,6 +116,20 @@ class DetailActivity : AppCompatActivity() {
         })
     }
 
+    private fun saveUser(user: User) {
+        btn_fav.setOnClickListener {
+            checkFavorite()
+
+            if (isFavorite) {
+                detailViewModel.deleteUser(user)
+                Toast.makeText(this, "Deleted", Toast.LENGTH_SHORT).show()
+            } else {
+                detailViewModel.insertFavoriteUser(user)
+                Toast.makeText(this, "Saved", Toast.LENGTH_SHORT).show()
+            }
+        }
+    }
+
     private fun inputData(it: User) {
         Glide.with(this)
             .load(it.avatar_url)
@@ -113,8 +143,8 @@ class DetailActivity : AppCompatActivity() {
         tv_following.text = it.following.toString()
     }
 
-    private fun changeIcon(state: Boolean) {
-        if (state) {
+    private fun changeIcon(saved: Boolean) {
+        if (saved) {
             btn_fav.setImageResource(R.drawable.ic_round_favorite_24)
         } else {
             btn_fav.setImageResource(R.drawable.ic_round_favorite_border_24)

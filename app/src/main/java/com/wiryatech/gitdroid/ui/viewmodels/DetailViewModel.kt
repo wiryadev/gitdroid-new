@@ -1,5 +1,6 @@
 package com.wiryatech.gitdroid.ui.viewmodels
 
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -36,5 +37,5 @@ class DetailViewModel(private val detailRepository: DetailRepository) : ViewMode
         detailRepository.deleteUser(user)
     }
 
-    fun checkFavorite(username: String): Int = detailRepository.checkFavorite(username)
+    fun checkFavorite(username: String): LiveData<Int> = detailRepository.checkFavorite(username)
 }

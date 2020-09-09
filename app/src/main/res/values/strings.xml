@@ -10,7 +10,7 @@
     <string name="username">username</string>
     <string name="type">type</string>
     <string name="avatar">Avatar</string>
-    <string name="total_fav">20</string>
+    <string name="total_fav">0</string>
     <string name="users">Users</string>
     <string name="back_button">Back Button</string>
     <string name="header">header</string>
@@ -26,21 +26,6 @@
     <string name="reminder_summary_on">Daily reminder: ON</string>
     <string name="reminder_summary_off">Daily reminder: OFF</string>
     <string name="about">About App</string>
-
-    <!-- Preference Titles -->
-    <string name="messages_header">Messages</string>
-    <string name="sync_header">Sync</string>
-
-    <!-- Messages Preferences -->
-    <string name="signature_title">Your signature</string>
-    <string name="reply_title">Default reply action</string>
-
-    <!-- Sync Preferences -->
-    <string name="sync_title">Sync email periodically</string>
-    <string name="attachment_title">Download incoming attachments</string>
-    <string name="attachment_summary_on">Automatically download attachments for incoming emails
-    </string>
-    <string name="attachment_summary_off">Only download attachments when manually requested</string>
     <string name="no_follower">This user is not followed by anyone</string>
     <string name="no_following">This user is not following anyone</string>
 </resources>

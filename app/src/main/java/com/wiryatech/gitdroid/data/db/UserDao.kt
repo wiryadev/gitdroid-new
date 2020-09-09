@@ -17,6 +17,6 @@ interface UserDao {
     suspend fun deleteUser(user: User)
 
     @Query("SELECT EXISTS (SELECT 1 FROM users WHERE login=:login)")
-    fun checkFavorite(login: String): Int
+    fun checkFavorite(login: String): LiveData<Int>
 
 }
