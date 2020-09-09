@@ -54,4 +54,6 @@ class UserViewModel(private val userRepository: UserRepository) : ViewModel() {
 
     fun getFavoriteUsers() = userRepository.getFavoriteUsers()
 
+    fun getAmountOfData() = userRepository.getAmountOfData()
+
 }

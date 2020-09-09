@@ -1,6 +1,5 @@
 package com.wiryatech.gitdroid.data.repositories
 
-import androidx.lifecycle.LiveData
 import com.wiryatech.gitdroid.data.api.RetrofitBuilder
 import com.wiryatech.gitdroid.data.db.UserDb
 import com.wiryatech.gitdroid.data.model.User
@@ -17,6 +16,6 @@ class DetailRepository(private val db: UserDb) {
 
     suspend fun deleteUser(user: User) = db.getUserDao().deleteUser(user)
 
-    fun checkFavorite(username: String): LiveData<Int> = db.getUserDao().checkFavorite(username)
+    fun checkFavorite(username: String) = db.getUserDao().checkFavorite(username)
 
 }

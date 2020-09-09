@@ -37,5 +37,5 @@ class DetailViewModel(private val detailRepository: DetailRepository) : ViewMode
         detailRepository.deleteUser(user)
     }
 
-    fun checkFavorite(username: String): LiveData<Int> = detailRepository.checkFavorite(username)
+    fun checkFavorite(username: String) = detailRepository.checkFavorite(username)
 }

@@ -1,5 +1,6 @@
 package com.wiryatech.gitdroid.ui.fragments
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -7,6 +8,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.wiryatech.gitdroid.R
+import com.wiryatech.gitdroid.ui.activities.DetailActivity
 import com.wiryatech.gitdroid.ui.activities.MainActivity
 import com.wiryatech.gitdroid.ui.adapters.UserAdapter
 import com.wiryatech.gitdroid.ui.viewmodels.UserViewModel
@@ -28,9 +30,10 @@ class FavoritesFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         viewModel = (activity as MainActivity).userViewModel
-        setupRV()
 
+        setupRV()
         observe()
+        initUI()
     }
 
     private fun setupRV() {
@@ -44,6 +47,23 @@ class FavoritesFragment : Fragment() {
         viewModel.getFavoriteUsers().observe(viewLifecycleOwner, {
             userAdapter.differ.submitList(it)
         })
+
+        viewModel.getAmountOfData().observe(viewLifecycleOwner, {
+            tv_fav.text = it.toString()
+        })
+    }
+
+    private fun initUI() {
+        userAdapter.setOnItemClickListener {
+            val data = it.login
+            getUserDetail(data)
+        }
+    }
+
+    private fun getUserDetail(data: String) {
+        val intent = Intent(activity, DetailActivity::class.java)
+        intent.putExtra(DetailActivity.USERNAME, data)
+        startActivity(intent)
     }
 
 }

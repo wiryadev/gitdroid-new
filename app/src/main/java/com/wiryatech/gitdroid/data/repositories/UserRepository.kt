@@ -22,4 +22,6 @@ class UserRepository(private val db: UserDb) {
 
     fun getFavoriteUsers() = db.getUserDao().getFavoriteUsers()
 
+    fun getAmountOfData() = db.getUserDao().getAmountOfData()
+
 }

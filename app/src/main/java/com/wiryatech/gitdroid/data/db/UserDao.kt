@@ -19,4 +19,7 @@ interface UserDao {
     @Query("SELECT EXISTS (SELECT 1 FROM users WHERE login=:login)")
     fun checkFavorite(login: String): LiveData<Int>
 
+    @Query("SELECT COUNT(*) FROM users")
+    fun getAmountOfData(): LiveData<Int>
+
 }
