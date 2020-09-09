@@ -59,6 +59,7 @@ dependencies {
     implementation "com.ismaeldivita.chipnavigation:chip-navigation-bar:$cnb_version"
     implementation "com.airbnb.android:lottie:$lottie_version"
     implementation "de.hdodenhof:circleimageview:$civ_version"
+    implementation "com.github.GrenderG:Toasty:$toasty_version"
 
     // Image Loader
     implementation "com.github.bumptech.glide:glide:$glide_version"

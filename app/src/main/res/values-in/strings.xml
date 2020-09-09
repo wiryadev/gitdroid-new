@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">GitDroid</string>
+    <string name="home">Beranda</string>
+    <string name="favorites">Favorit</string>
+    <string name="settings">Pengaturan</string>
+    <string name="preferences">Preferensi</string>
+    <string name="info">Info</string>
+    <string name="search_hint">Cari pengguna</string>
+    <string name="username">username</string>
+    <string name="type">tipe</string>
+    <string name="avatar">Avatar</string>
+    <string name="total_fav">0</string>
+    <string name="users">Pengguna</string>
+    <string name="back_button">Tombol Kembali</string>
+    <string name="followers">Pengikut</string>
+    <string name="following">Diikuti</string>
+    <string name="public_repos">Repo Publik</string>
+    <string name="no_data">Tidak Ada Data</string>
+    <string name="no_follower">Pengguna ini tidak diikuti siapapun</string>
+    <string name="no_following">Pengguna ini tidak mengikuti siapapun</string>
+    <string name="added">Ditambahkan</string>
+    <string name="deleted">Dihapus</string>
+
+    <string name="language">Bahasa</string>
+    <string name="language_summary">Ganti bahasa aplikasi</string>
+    <string name="reminder">Pengingat</string>
+    <string name="reminder_key">daily_reminder</string>
+    <string name="reminder_summary_on">Notifikasi harian: ON</string>
+    <string name="reminder_summary_off">DNotifikasi harian: OFF</string>
+    <string name="about">Tentang Aplikasi</string>
+</resources>

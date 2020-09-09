@@ -5,7 +5,6 @@ import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
@@ -16,8 +15,8 @@ import com.wiryatech.gitdroid.data.repositories.DetailRepository
 import com.wiryatech.gitdroid.ui.adapters.SectionsPagerAdapter
 import com.wiryatech.gitdroid.ui.viewmodels.DetailViewModel
 import com.wiryatech.gitdroid.ui.viewmodels.DetailViewModelFactory
-import com.wiryatech.gitdroid.ui.viewmodels.UserViewModel
 import com.wiryatech.gitdroid.utils.Resource
+import es.dmoral.toasty.Toasty
 import kotlinx.android.synthetic.main.activity_detail.*
 
 class DetailActivity : AppCompatActivity() {
@@ -122,10 +121,10 @@ class DetailActivity : AppCompatActivity() {
 
             if (isFavorite) {
                 detailViewModel.deleteUser(user)
-                Toast.makeText(this, "Deleted", Toast.LENGTH_SHORT).show()
+                Toasty.custom(this, R.string.deleted, R.drawable.ic_round_delete_24, R.color.colorAccentSecondary, Toast.LENGTH_SHORT, true, true).show()
             } else {
                 detailViewModel.insertFavoriteUser(user)
-                Toast.makeText(this, "Saved", Toast.LENGTH_SHORT).show()
+                Toasty.custom(this, R.string.added, R.drawable.ic_round_favorite_24, R.color.colorAccentSecondary, Toast.LENGTH_SHORT, true, true).show()
             }
         }
     }
