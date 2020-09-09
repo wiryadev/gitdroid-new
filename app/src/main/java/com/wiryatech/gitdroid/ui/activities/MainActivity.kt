@@ -5,11 +5,11 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.ismaeldivita.chipnavigation.ChipNavigationBar
-import com.wiryatech.gitdroid.ui.fragments.FavoritesFragment
-import com.wiryatech.gitdroid.ui.fragments.HomeFragment
 import com.wiryatech.gitdroid.R
 import com.wiryatech.gitdroid.data.db.UserDb
 import com.wiryatech.gitdroid.data.repositories.UserRepository
+import com.wiryatech.gitdroid.ui.fragments.FavoritesFragment
+import com.wiryatech.gitdroid.ui.fragments.HomeFragment
 import com.wiryatech.gitdroid.ui.fragments.SettingsFragment
 import com.wiryatech.gitdroid.ui.viewmodels.UserViewModel
 import com.wiryatech.gitdroid.ui.viewmodels.UserViewModelFactory

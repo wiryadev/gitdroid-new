@@ -6,11 +6,15 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.wiryatech.gitdroid.R
+import com.wiryatech.gitdroid.data.db.UserDb
+import com.wiryatech.gitdroid.data.repositories.UserRepository
 import com.wiryatech.gitdroid.ui.activities.DetailActivity
 import com.wiryatech.gitdroid.ui.adapters.UserAdapter
 import com.wiryatech.gitdroid.ui.viewmodels.UserViewModel
+import com.wiryatech.gitdroid.ui.viewmodels.UserViewModelFactory
 import com.wiryatech.gitdroid.utils.Resource
 import kotlinx.android.synthetic.main.fragment_follower.*
 
@@ -34,7 +38,7 @@ class FollowingFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewModel = (activity as DetailActivity).userViewModel
+        initViewModel()
         setupRV()
         handleState()
 
@@ -44,6 +48,12 @@ class FollowingFragment : Fragment() {
             getFollowing(username.toString())
             Log.d("BundleFragment1", "$arguments, $username")
         }
+    }
+
+    private fun initViewModel() {
+        val userRepository = UserRepository(UserDb(requireContext()))
+        val viewModelFactory = UserViewModelFactory(userRepository)
+        viewModel = ViewModelProvider(this, viewModelFactory).get(UserViewModel::class.java)
     }
 
     private fun setupRV() {

@@ -6,14 +6,10 @@ import com.wiryatech.gitdroid.data.model.Search
 import com.wiryatech.gitdroid.data.model.User
 import retrofit2.Response
 
-class UserRepository(val db: UserDb) {
+class UserRepository(private val db: UserDb) {
 
     suspend fun searchUser(q: String): Response<Search> {
         return RetrofitBuilder.api.searchUser(q)
-    }
-
-    suspend fun getDetailUser(username: String): Response<User> {
-        return RetrofitBuilder.api.getDetailUser(username)
     }
 
     suspend fun getFollower(username: String): Response<List<User>> {
@@ -23,5 +19,7 @@ class UserRepository(val db: UserDb) {
     suspend fun getFollowing(username: String): Response<List<User>> {
         return RetrofitBuilder.api.getFollowing(username)
     }
+
+    fun getFavoriteUsers() = db.getUserDao().getFavoriteUsers()
 
 }

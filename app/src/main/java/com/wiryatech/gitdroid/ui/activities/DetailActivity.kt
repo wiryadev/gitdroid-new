@@ -10,17 +10,21 @@ import com.bumptech.glide.request.RequestOptions
 import com.wiryatech.gitdroid.R
 import com.wiryatech.gitdroid.data.db.UserDb
 import com.wiryatech.gitdroid.data.model.User
-import com.wiryatech.gitdroid.data.repositories.UserRepository
+import com.wiryatech.gitdroid.data.repositories.DetailRepository
 import com.wiryatech.gitdroid.ui.adapters.SectionsPagerAdapter
+import com.wiryatech.gitdroid.ui.viewmodels.DetailViewModel
+import com.wiryatech.gitdroid.ui.viewmodels.DetailViewModelFactory
 import com.wiryatech.gitdroid.ui.viewmodels.UserViewModel
-import com.wiryatech.gitdroid.ui.viewmodels.UserViewModelFactory
 import com.wiryatech.gitdroid.utils.Resource
 import kotlinx.android.synthetic.main.activity_detail.*
 
 class DetailActivity : AppCompatActivity() {
 
-    lateinit var userViewModel: UserViewModel
+    lateinit var detailViewModel: DetailViewModel
+    lateinit var username: String
+    lateinit var user: User
     private val TAG = "DetailActivity"
+    private var isFavorite = false
 
     companion object {
         const val USERNAME = "username"
@@ -30,7 +34,7 @@ class DetailActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_detail)
 
-        val username = intent.getStringExtra(USERNAME).toString()
+        username = intent.getStringExtra(USERNAME).toString()
 
         initUI()
         initViewModel()
@@ -40,15 +44,19 @@ class DetailActivity : AppCompatActivity() {
     }
 
     private fun initUI() {
+        initBackButton()
+    }
+
+    private fun initBackButton() {
         btn_back.setOnClickListener {
             super.onBackPressed()
         }
     }
 
     private fun initViewModel() {
-        val userRepository = UserRepository(UserDb(this))
-        val viewModelFactory = UserViewModelFactory(userRepository)
-        userViewModel = ViewModelProvider(this, viewModelFactory).get(UserViewModel::class.java)
+        val detailRepository = DetailRepository((UserDb(this)))
+        val viewModelFactory = DetailViewModelFactory(detailRepository)
+        detailViewModel = ViewModelProvider(this, viewModelFactory).get(DetailViewModel::class.java)
     }
 
     private fun initPager(username: String) {
@@ -60,13 +68,13 @@ class DetailActivity : AppCompatActivity() {
 
     private fun initData(username: String) {
         if (username.trim().isNotEmpty()) {
-            userViewModel.getDetailUser(username)
+            detailViewModel.getDetailUser(username)
         }
     }
 
     private fun handleState() {
         Log.d(TAG, "handleState")
-        userViewModel.detailUser.observe(this, { response ->
+        detailViewModel.detailUser.observe(this, { response ->
             when(response) {
                 is Resource.Success -> {
                     hideProgressBar()
@@ -74,7 +82,8 @@ class DetailActivity : AppCompatActivity() {
                         if (it.equals(null)) {
                             hideProgressBar()
                         } else {
-                            inputData(it)
+                            user = it
+                            inputData(user)
                         }
                     }
                 }
@@ -102,6 +111,14 @@ class DetailActivity : AppCompatActivity() {
         tv_repos.text = it.public_repos.toString()
         tv_followers.text = it.followers.toString()
         tv_following.text = it.following.toString()
+    }
+
+    private fun changeIcon(state: Boolean) {
+        if (state) {
+            btn_fav.setImageResource(R.drawable.ic_round_favorite_24)
+        } else {
+            btn_fav.setImageResource(R.drawable.ic_round_favorite_border_24)
+        }
     }
 
     private fun hideProgressBar() {
