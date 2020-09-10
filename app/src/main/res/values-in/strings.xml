@@ -26,7 +26,8 @@
     <string name="language_summary">Ganti bahasa aplikasi</string>
     <string name="reminder">Pengingat</string>
     <string name="reminder_key">daily_reminder</string>
+    <string name="reminder_notif">Cek profil pengguna github lainnya sekarang</string>
     <string name="reminder_summary_on">Notifikasi harian: ON</string>
-    <string name="reminder_summary_off">DNotifikasi harian: OFF</string>
+    <string name="reminder_summary_off">Notifikasi harian: OFF</string>
     <string name="about">Tentang Aplikasi</string>
 </resources>

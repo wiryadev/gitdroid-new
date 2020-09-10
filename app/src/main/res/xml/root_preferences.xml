@@ -15,7 +15,7 @@
             app:summaryOn="@string/reminder_summary_on"
             app:summaryOff="@string/reminder_summary_off"
             app:icon="@drawable/ic_round_notifications_24"
-            app:key="@string/reminder"/>
+            app:key="@string/reminder_key"/>
 
     </PreferenceCategory>
 
@@ -23,6 +23,7 @@
 
         <Preference
             app:title="@string/about"
+            app:key="@string/about"
             app:icon="@drawable/ic_round_info_24" />
 
     </PreferenceCategory>

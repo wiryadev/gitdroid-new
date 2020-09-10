@@ -25,6 +25,7 @@
     <string name="language_summary">Change app language</string>
     <string name="reminder">Reminder</string>
     <string name="reminder_key">daily_reminder</string>
+    <string name="reminder_notif">Check other github\'s user profile right now</string>
     <string name="reminder_summary_on">Daily notification: ON</string>
     <string name="reminder_summary_off">Daily notification: OFF</string>
     <string name="about">About App</string>
