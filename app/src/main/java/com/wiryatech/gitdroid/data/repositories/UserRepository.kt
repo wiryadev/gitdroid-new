@@ -2,8 +2,8 @@ package com.wiryatech.gitdroid.data.repositories
 
 import com.wiryatech.gitdroid.data.api.RetrofitBuilder
 import com.wiryatech.gitdroid.data.db.UserDb
-import com.wiryatech.gitdroid.data.model.Search
-import com.wiryatech.gitdroid.data.model.User
+import com.wiryatech.gitdroid.data.models.Search
+import com.wiryatech.gitdroid.data.models.User
 import retrofit2.Response
 
 class UserRepository(private val db: UserDb) {

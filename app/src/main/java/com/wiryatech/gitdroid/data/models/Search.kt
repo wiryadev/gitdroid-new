@@ -1,4 +1,4 @@
-package com.wiryatech.gitdroid.data.model
+package com.wiryatech.gitdroid.data.models
 
 data class Search(
     val total_count: Int,

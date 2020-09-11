@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">ConsumerApp</string>
+    <string name="no_data">No Data</string>
+    <string name="username">username</string>
+    <string name="type">type</string>
+    <string name="avatar">Avatar</string>
+    <string name="consumer_app">Consumer App</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="repos">repos</string>
+</resources>

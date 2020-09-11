@@ -2,7 +2,7 @@ package com.wiryatech.gitdroid.data.db
 
 import android.content.Context
 import androidx.room.*
-import com.wiryatech.gitdroid.data.model.User
+import com.wiryatech.gitdroid.data.models.User
 
 @Database(entities = [User::class], version = 1)
 
@@ -20,7 +20,7 @@ abstract class UserDb : RoomDatabase() {
         }
 
         private fun createDatabase(context: Context): UserDb {
-            return Room.databaseBuilder(context.applicationContext, UserDb::class.java, "user.db")
+            return Room.databaseBuilder(context.applicationContext, UserDb::class.java, "user_db")
                 .build()
         }
     }

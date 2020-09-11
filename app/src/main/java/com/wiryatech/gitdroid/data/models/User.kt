@@ -1,4 +1,4 @@
-package com.wiryatech.gitdroid.data.model
+package com.wiryatech.gitdroid.data.models
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey

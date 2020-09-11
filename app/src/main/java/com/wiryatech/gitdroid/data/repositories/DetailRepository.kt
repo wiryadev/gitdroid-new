@@ -2,7 +2,7 @@ package com.wiryatech.gitdroid.data.repositories
 
 import com.wiryatech.gitdroid.data.api.RetrofitBuilder
 import com.wiryatech.gitdroid.data.db.UserDb
-import com.wiryatech.gitdroid.data.model.User
+import com.wiryatech.gitdroid.data.models.User
 import retrofit2.Response
 
 

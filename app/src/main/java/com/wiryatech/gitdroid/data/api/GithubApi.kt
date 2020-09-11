@@ -1,7 +1,7 @@
 package com.wiryatech.gitdroid.data.api
 
-import com.wiryatech.gitdroid.data.model.Search
-import com.wiryatech.gitdroid.data.model.User
+import com.wiryatech.gitdroid.data.models.Search
+import com.wiryatech.gitdroid.data.models.User
 import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Path

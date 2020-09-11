@@ -3,8 +3,8 @@ package com.wiryatech.gitdroid.ui.viewmodels
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.wiryatech.gitdroid.data.model.Search
-import com.wiryatech.gitdroid.data.model.User
+import com.wiryatech.gitdroid.data.models.Search
+import com.wiryatech.gitdroid.data.models.User
 import com.wiryatech.gitdroid.data.repositories.UserRepository
 import com.wiryatech.gitdroid.utils.Resource
 import kotlinx.coroutines.launch

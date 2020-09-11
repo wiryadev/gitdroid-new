@@ -1,8 +1,9 @@
 package com.wiryatech.gitdroid.data.db
 
+import android.database.Cursor
 import androidx.lifecycle.LiveData
 import androidx.room.*
-import com.wiryatech.gitdroid.data.model.User
+import com.wiryatech.gitdroid.data.models.User
 
 @Dao
 interface UserDao {
@@ -21,5 +22,8 @@ interface UserDao {
 
     @Query("SELECT COUNT(*) FROM users")
     fun getAmountOfData(): LiveData<Int>
+
+    @Query("SELECT * FROM users")
+    fun getFavoriteListForConsumer(): Cursor
 
 }

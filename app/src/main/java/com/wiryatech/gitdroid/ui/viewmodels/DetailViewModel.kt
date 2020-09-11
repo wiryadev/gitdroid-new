@@ -1,10 +1,9 @@
 package com.wiryatech.gitdroid.ui.viewmodels
 
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.wiryatech.gitdroid.data.model.User
+import com.wiryatech.gitdroid.data.models.User
 import com.wiryatech.gitdroid.data.repositories.DetailRepository
 import com.wiryatech.gitdroid.utils.Resource
 import kotlinx.coroutines.launch

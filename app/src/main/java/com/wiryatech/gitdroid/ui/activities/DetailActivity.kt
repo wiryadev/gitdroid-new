@@ -10,7 +10,7 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.wiryatech.gitdroid.R
 import com.wiryatech.gitdroid.data.db.UserDb
-import com.wiryatech.gitdroid.data.model.User
+import com.wiryatech.gitdroid.data.models.User
 import com.wiryatech.gitdroid.data.repositories.DetailRepository
 import com.wiryatech.gitdroid.ui.adapters.SectionsPagerAdapter
 import com.wiryatech.gitdroid.ui.viewmodels.DetailViewModel
