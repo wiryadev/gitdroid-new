@@ -2,16 +2,15 @@ package com.wiryatech.gitdroid.ui.fragments
 
 import android.os.Bundle
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.wiryatech.gitdroid.R
 import com.wiryatech.gitdroid.data.db.UserDb
 import com.wiryatech.gitdroid.data.repositories.UserRepository
-import com.wiryatech.gitdroid.ui.activities.DetailActivity
 import com.wiryatech.gitdroid.ui.adapters.UserAdapter
 import com.wiryatech.gitdroid.ui.viewmodels.UserViewModel
 import com.wiryatech.gitdroid.ui.viewmodels.UserViewModelFactory

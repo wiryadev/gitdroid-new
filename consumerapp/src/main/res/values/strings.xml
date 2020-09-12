@@ -5,6 +5,5 @@
     <string name="type">type</string>
     <string name="avatar">Avatar</string>
     <string name="consumer_app">Consumer App</string>
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="repos">repos</string>
 </resources>

@@ -1,10 +1,8 @@
 package com.wiryatech.consumerapp.ui
 
-import android.database.Cursor
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import com.wiryatech.consumerapp.R
-import com.wiryatech.consumerapp.models.User
 
 class MainActivity : AppCompatActivity() {
 

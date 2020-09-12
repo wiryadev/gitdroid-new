@@ -3,12 +3,11 @@ package com.wiryatech.consumerapp.ui
 import android.database.Cursor
 import android.net.Uri
 import android.os.Bundle
-import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.wiryatech.consumerapp.R
 import com.wiryatech.consumerapp.adapter.UserAdapter

@@ -50,6 +50,11 @@ class FavoritesFragment : Fragment() {
 
         viewModel.getAmountOfData().observe(viewLifecycleOwner, {
             tv_fav.text = it.toString()
+
+            if (it <= 0) {
+                imageView.visibility = View.VISIBLE
+                tv_error.visibility = View.VISIBLE
+            }
         })
     }
 

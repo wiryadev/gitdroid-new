@@ -1,9 +1,6 @@
 package com.wiryatech.gitdroid.utils
 
-import android.app.AlarmManager
-import android.app.NotificationChannel
-import android.app.NotificationManager
-import android.app.PendingIntent
+import android.app.*
 import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
@@ -94,6 +91,7 @@ class ReminderReceiver : BroadcastReceiver() {
         }
 
         val notification = notificationBuilder.build()
+        notification.flags = Notification.FLAG_AUTO_CANCEL
         notificationManager.notify(NOTIFICATION_ID, notification)
     }
 }

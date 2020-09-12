@@ -21,10 +21,9 @@ import kotlinx.android.synthetic.main.activity_detail.*
 
 class DetailActivity : AppCompatActivity() {
 
-    lateinit var detailViewModel: DetailViewModel
+    private lateinit var detailViewModel: DetailViewModel
     lateinit var username: String
     lateinit var user: User
-    private val TAG = "DetailActivity"
     private var isFavorite = false
 
     companion object {
@@ -87,7 +86,6 @@ class DetailActivity : AppCompatActivity() {
     }
 
     private fun handleState() {
-        Log.d(TAG, "handleState")
         detailViewModel.detailUser.observe(this, { response ->
             when(response) {
                 is Resource.Success -> {
